@@ -9,7 +9,8 @@
 #ifndef Snake_hpp
 #define Snake_hpp
 
-#include "Game.hpp"
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 
 struct snakeSegment {
     snakeSegment(int x, int y) : position(x, y) {};
@@ -62,10 +63,5 @@ public:
     void render(sf::RenderWindow& window);
 
 };
-
-
-
-
-
 
 #endif /* Snake_hpp */

@@ -14,6 +14,8 @@ Snake::Snake(int size) {
 	reset();
 }
 
+Snake::~Snake() {};
+
 // move the snake to its original position
 void Snake::reset() {
 	_body.clear();
@@ -26,7 +28,7 @@ void Snake::reset() {
 	_score = 0;
 	_lives = 3;
 	_lost = false;
-	_speed = 15;
+	_speed = 500;
 	
 }
 
@@ -105,15 +107,33 @@ void Snake::_checkCollisions() {
 			break;
 		}
 	}
-
 	return;	
 }
 
 void Snake::cut(int segment) {
-	return;
+	for (int i=0; i < segment; i++) {
+		_body.pop_back();
+	}
+	if (--_lives <= 0) { lose(); }
+}
+
+void Snake::render(sf::RenderWindow &window) {
+	if (_body.empty()) { return; }
+
+	auto head = _body.begin();
+	_bodyShape.setFillColor(sf::Color::Yellow);
+	_bodyShape.setPosition(head->position.x * _size, head->position.y * _size);
+	window.draw(_bodyShape);
+
+	for (auto itr=_body.begin() + 1; itr < _body.end(); itr++) {
+		_bodyShape.setFillColor(sf::Color::Green);
+		_bodyShape.setPosition(itr->position.x * _size, itr->position.y * _size);
+		window.draw(_bodyShape);
+	}
 }
 
 // helper methods ===========================================================
+void Snake::increaseScore() { _score++; }
 void Snake::setDirection(snakeDirection dir) { _direction = dir; }
 snakeDirection Snake::getDirection() { return _direction; }
 int Snake::getSize() { return _size; }

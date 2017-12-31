@@ -15,8 +15,6 @@ int main(int, char const**)
         game.render();
         //std::cout << game.getDelta().asMicroseconds() << std::endl;
         game.restartClock();
-        if (game.getCumulativeDelta().asSeconds() >= 10)
-            std::cout << game.getCumulativeDelta().asSeconds() << std::endl;
     }
     
     return EXIT_SUCCESS;

@@ -25,6 +25,7 @@ public:
     void handleInput();
     
     sf::Vector2u getSize();
+    sf::RenderWindow& getRenderWindow();
     bool isDone();
     bool isFullScreen();
     void toggleFullScreen();

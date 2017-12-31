@@ -1,8 +1,8 @@
 CC=c++
 CPPFLAGS=-std=c++11 -g
 LDFLAGS=-L/usr/local/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -framework Foundation
-SOURCES=main.cpp ResourcePath.mm Game.cpp Snake.cpp Window.cpp
-OBJECTS=main.o ResourcePath.o Game.o Snake.o Window.o
+SOURCES=main.cpp ResourcePath.mm Game.cpp Snake.cpp Window.cpp World.cpp
+OBJECTS=main.o ResourcePath.o Game.o Snake.o Window.o World.o
 EXECUTABLE=game
 
 all: $(EXECUTABLE) $(OBJECTS)

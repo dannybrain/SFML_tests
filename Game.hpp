@@ -10,6 +10,8 @@
 #define Game_hpp
 
 #include "Window.hpp"
+#include "Snake.hpp"
+#include "World.hpp"
 
 class Game {
 private:
@@ -20,6 +22,9 @@ private:
     sf::Time _delta;        // time elapsed between 2 cycles
     sf::Time _cumul_delta;  // cumulative delta
     sf::Vector2f _vect;     // movement vector for our mushroom
+
+    World _world;            
+    Snake _snake;           // player
     
     void move_mushroom();
     

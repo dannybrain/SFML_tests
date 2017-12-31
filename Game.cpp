@@ -5,11 +5,15 @@
 //  Created by Daniel Biehle on 12/14/17.
 //  Copyright © 2017 Daniel Biehle. All rights reserved.
 //
-
+#include <iostream>
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 #include "Game.hpp"
 #include "ResourcePath.hpp"
 
-Game::Game() : _window("game", sf::Vector2u(800, 600)) {
+Game::Game() : _window("game", sf::Vector2u(800, 600)), 
+               _world(sf::Vector2i(800, 600)), 
+               _snake(_world.getBlockSize()) {
     _texture.loadFromFile(resourcePath() + "icon.png");
     _mushroom.setTexture(_texture);
     _vect = sf::Vector2f(400, 400);
@@ -32,16 +36,47 @@ void Game::move_mushroom() {
 }
 
 void Game::update() {
-    move_mushroom();
+    //move_mushroom();
+    float timestep = 1.0f / _snake.getSpeed();
+
+    if (_delta.asSeconds() >= timestep) {
+        _snake.tick();
+        _world.update(_snake);
+        if (_snake.hasLost()){
+            _snake.reset();
+        }
+    }
 }
 
 void Game::handleInput() {
+    // window exit/key press
     _window.handleInput();
+
+    // snake specific keys
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) and 
+        _snake.getDirection() != snakeDirection::Down) {
+        _snake.setDirection(snakeDirection::Up);
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) and
+        _snake.getDirection() != snakeDirection::Right) {
+        _snake.setDirection(snakeDirection::Left);
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) and
+        _snake.getDirection() != snakeDirection::Left) {
+        _snake.setDirection(snakeDirection::Right);
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) and
+        _snake.getDirection() != snakeDirection::Up) {
+        _snake.setDirection(snakeDirection::Down);
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+        std::cout << "ok au moins ca marche" << std::endl;
+    }
 }
 
 void Game::render() {
     _window.beginDraw();
-    _window.draw(_mushroom);
+    //_window.draw(_mushroom);
+    _snake.render(_window.getRenderWindow());
+    _world.render(_window.getRenderWindow());
     _window.endDraw();
 }
 

@@ -55,7 +55,10 @@ void Window::handleInput(){
             event.key.code == sf::Keyboard::F5) {
             toggleFullScreen();
         }
-        
+        if (event.type == sf::Event::KeyPressed and
+            event.key.code == sf::Keyboard::Escape) {
+            exit(1);
+        }
     }
 }
 
@@ -67,6 +70,10 @@ bool Window::isDone() {
 
 sf::Vector2u Window::getSize() {
     return _size;
+}
+
+sf::RenderWindow& Window::getRenderWindow() {
+    return _window;
 }
 
 void Window::draw(sf::Drawable &drawable) {
