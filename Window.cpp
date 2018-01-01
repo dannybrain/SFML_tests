@@ -13,6 +13,7 @@ void Window::setup(const std::string &title, const sf::Vector2u &size) {
     _size = size;
     _isFullScreen = false;
     _isDone = false;
+    _window.setFramerateLimit(60);
     create();
 }
 

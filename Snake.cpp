@@ -6,6 +6,7 @@
 //  Copyright © 2017 Daniel Biehle. All rights reserved.
 //
 
+#include <math.h> // logarithm functions
 #include "Snake.hpp"
 
 Snake::Snake(int size) {
@@ -28,7 +29,8 @@ void Snake::reset() {
 	_score = 0;
 	_lives = 3;
 	_lost = false;
-	_speed = 500;
+	_speed_increment = 10;
+	_speed = 10 + _speed_increment;
 	
 }
 
@@ -133,7 +135,7 @@ void Snake::render(sf::RenderWindow &window) {
 }
 
 // helper methods ===========================================================
-void Snake::increaseScore() { _score++; }
+void Snake::increaseScore() { _score++; _speed += 1 / (2 * log(_size)) * _speed_increment; }
 void Snake::setDirection(snakeDirection dir) { _direction = dir; }
 snakeDirection Snake::getDirection() { return _direction; }
 int Snake::getSize() { return _size; }

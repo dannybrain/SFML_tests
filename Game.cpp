@@ -39,12 +39,17 @@ void Game::update() {
     //move_mushroom();
     float timestep = 1.0f / _snake.getSpeed();
 
-    if (_delta.asSeconds() >= timestep) {
+    if (_cumul_delta.asSeconds() >= timestep) {
         _snake.tick();
         _world.update(_snake);
         if (_snake.hasLost()){
             _snake.reset();
         }
+        _cumul_delta -= sf::seconds(timestep);
+    } else {
+        std::cout << "speed " << _snake.getSpeed()
+                  << "cumul " << _cumul_delta.asSeconds() 
+                  << " VS " << timestep << std::endl;
     }
 }
 
@@ -67,9 +72,6 @@ void Game::handleInput() {
         _snake.setDirection(snakeDirection::Down);
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        std::cout << "ok au moins ca marche" << std::endl;
-    }
 }
 
 void Game::render() {
