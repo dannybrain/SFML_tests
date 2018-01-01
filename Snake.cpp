@@ -143,6 +143,7 @@ void Snake::setDirection(snakeDirection dir) { _direction = dir; }
 snakeDirection Snake::getDirection() { return _direction; }
 int Snake::getSize() { return _body.size(); }
 int Snake::getSpeed() { return _speed; }
+void Snake::setSpeed(int speed) { _speed = speed; }
 int Snake::getLives() { return Snake::_lives; }
 int Snake::getScore() { return _score; }
 bool Snake::hasLost() { return _lost; }
