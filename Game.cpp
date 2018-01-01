@@ -19,20 +19,28 @@ Game::Game() : _window("game", sf::Vector2u(800, 600)),
     _vect = sf::Vector2f(400, 400);
 }
 
-void Game::move_mushroom() {
-   /* _mushroom.setPosition(
-        _mushroom.getPosition().x + (_vect.x * _delta.asSeconds()),
-        _mushroom.getPosition().y + (_vect.y * _delta.asSeconds())
-    );*/
-    _mushroom.move(_vect * _delta.asSeconds());
+void Game::debug() {
+    sf::Font font;
+    sf::Text text;
+    sf::String dinfo;
 
-    if (_mushroom.getPosition().x + _mushroom.getTexture()->getSize().x > _window.getSize().x or
-        _mushroom.getPosition().x < 0)
-        _vect.x *= -1;
-    
-    if (_mushroom.getPosition().y + _mushroom.getTexture()->getSize().y > _window.getSize().y or
-        _mushroom.getPosition().y < 0)
-        _vect.y *= -1;
+    dinfo = "Speed " + std::to_string(_snake.getSpeed()) +
+            "\nSize " + std::to_string(_snake.getSize()) +
+            "\nLives " + std::to_string(_snake.getLives()) +
+            "\nScore " + std::to_string(_snake.getScore()) +
+            "\nDirection " + std::to_string(static_cast<int>(_snake.getDirection())) +
+            "\nDelta " + std::to_string(_cumul_delta.asSeconds());
+
+    if (font.loadFromFile("sansation.ttf")) {
+        text.setFont(font);
+        text.setFillColor(sf::Color::Green);
+        text.setStyle(sf::Text::Style::Bold);
+        text.setCharacterSize(18);
+        text.setPosition(_window.getSize().x - 180, 16);
+        text.setString(dinfo);
+        _window.draw(text);
+    }
+
 }
 
 void Game::update() {
@@ -46,11 +54,7 @@ void Game::update() {
             _snake.reset();
         }
         _cumul_delta -= sf::seconds(timestep);
-    } else {
-        std::cout << "speed " << _snake.getSpeed()
-                  << "cumul " << _cumul_delta.asSeconds() 
-                  << " VS " << timestep << std::endl;
-    }
+    } 
 }
 
 void Game::handleInput() {
@@ -79,6 +83,7 @@ void Game::render() {
     //_window.draw(_mushroom);
     _snake.render(_window.getRenderWindow());
     _world.render(_window.getRenderWindow());
+    debug();
     _window.endDraw();
 }
 

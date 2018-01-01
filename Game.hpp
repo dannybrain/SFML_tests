@@ -26,7 +26,7 @@ private:
     World _world;            
     Snake _snake;           // player
     
-    void move_mushroom();
+    void debug();           // show debug information
     
 public:
     Game();
@@ -38,7 +38,7 @@ public:
     sf::Time getCumulativeDelta();
     void update();
     void render();
-    
+
 };
 
 #endif /* Game_hpp */
