@@ -32,10 +32,10 @@ private:
     snakeContainer _body;
     sf::RectangleShape _bodyShape;
     snakeDirection _direction;
-    int _size;
+    int _block_size;
     int _speed;
     int _speed_increment;
-    int _lives;
+    static int _lives;
     int _score;
     bool _lost;
     void _checkCollisions();

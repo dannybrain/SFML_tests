@@ -9,9 +9,11 @@
 #include <math.h> // logarithm functions
 #include "Snake.hpp"
 
+int Snake::_lives = 3;
+
 Snake::Snake(int size) {
-	_size = size;
-	_bodyShape.setSize(sf::Vector2f(_size - 1, _size - 1));
+	_block_size = size;
+	_bodyShape.setSize(sf::Vector2f(_block_size - 1, _block_size - 1));
 	reset();
 }
 
@@ -27,7 +29,7 @@ void Snake::reset() {
 	
 	setDirection(snakeDirection::None);
 	_score = 0;
-	_lives = 3;
+	//_lives = 3;
 	_lost = false;
 	_speed_increment = 10;
 	_speed = 10 + _speed_increment;
@@ -41,9 +43,9 @@ sf::Vector2i Snake::getPosition() {
 void Snake::extend() {
 	if (_body.empty()) { return; }
 
-	snakeSegment& tail_head = _body[_size - 1];
+	snakeSegment& tail_head = _body[_body.size() - 1];
 	if (_body.size() > 1) {
-		snakeSegment& bone = _body[_size - 2];
+		snakeSegment& bone = _body[_body.size() - 2];
 		if (tail_head.position.x == bone.position.x) {
 			if (tail_head.position.y > bone.position.y) {
 				_body.push_back(snakeSegment(tail_head.position.x, 
@@ -116,7 +118,8 @@ void Snake::cut(int segment) {
 	for (int i=0; i < segment; i++) {
 		_body.pop_back();
 	}
-	if (--_lives <= 0) { lose(); }
+	Snake::_lives--;
+	if (Snake::_lives <= 0) { lose(); }
 }
 
 void Snake::render(sf::RenderWindow &window) {
@@ -124,23 +127,23 @@ void Snake::render(sf::RenderWindow &window) {
 
 	auto head = _body.begin();
 	_bodyShape.setFillColor(sf::Color::Yellow);
-	_bodyShape.setPosition(head->position.x * _size, head->position.y * _size);
+	_bodyShape.setPosition(head->position.x * _block_size, head->position.y * _block_size);
 	window.draw(_bodyShape);
 
 	for (auto itr=_body.begin() + 1; itr < _body.end(); itr++) {
 		_bodyShape.setFillColor(sf::Color::Green);
-		_bodyShape.setPosition(itr->position.x * _size, itr->position.y * _size);
+		_bodyShape.setPosition(itr->position.x * _block_size, itr->position.y * _block_size);
 		window.draw(_bodyShape);
 	}
 }
 
 // helper methods ===========================================================
-void Snake::increaseScore() { _score++; _speed += 1 / (2 * log(_size)) * _speed_increment; }
+void Snake::increaseScore() { _score++; _speed += 1 / (2 * log(_body.size())) * _speed_increment; }
 void Snake::setDirection(snakeDirection dir) { _direction = dir; }
 snakeDirection Snake::getDirection() { return _direction; }
-int Snake::getSize() { return _size; }
+int Snake::getSize() { return _body.size(); }
 int Snake::getSpeed() { return _speed; }
-int Snake::getLives() { return _lives; }
+int Snake::getLives() { return Snake::_lives; }
 int Snake::getScore() { return _score; }
 bool Snake::hasLost() { return _lost; }
 void Snake::lose() { _lost = true; }
