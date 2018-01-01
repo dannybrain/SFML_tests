@@ -49,6 +49,7 @@ public:
     sf::Vector2i getPosition();
     snakeDirection getDirection();
     void setDirection(snakeDirection dir);
+    void setSpeed(int speed);
     int getScore();
     int getLives();
     bool hasLost();

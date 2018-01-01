@@ -9,7 +9,7 @@
 #include "World.hpp"
 
 World::World(sf::Vector2i wsize) {
-	_block_size = 16;
+	_block_size = 32;
 
 	_window_size = wsize;
 	respawn_apple();

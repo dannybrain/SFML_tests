@@ -11,12 +11,11 @@
 #include "Game.hpp"
 #include "ResourcePath.hpp"
 
-Game::Game() : _window("game", sf::Vector2u(800, 600)), 
-               _world(sf::Vector2i(800, 600)), 
+Game::Game() : _window("game", sf::Vector2u(1024, 768)), 
+               _world(sf::Vector2i(1024, 768)), 
                _snake(_world.getBlockSize()) {
     _texture.loadFromFile(resourcePath() + "icon.png");
     _mushroom.setTexture(_texture);
-    _vect = sf::Vector2f(400, 400);
 }
 
 void Game::debug() {
@@ -74,6 +73,8 @@ void Game::handleInput() {
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) and
         _snake.getDirection() != snakeDirection::Up) {
         _snake.setDirection(snakeDirection::Down);
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+        _snake.setSpeed(10);
     }
 
 }
