@@ -39,11 +39,11 @@ private:
     int _score;
     bool _lost;
     void _checkCollisions();
-    
+
 public:
     Snake(int size);
     ~Snake();
-    
+
     int getSize();
     int getSpeed();
     sf::Vector2i getPosition();
@@ -54,7 +54,7 @@ public:
     int getLives();
     bool hasLost();
     void increaseScore();
-    
+
     void lose(); //handle lose rules
     void toggleLost();
     void extend();

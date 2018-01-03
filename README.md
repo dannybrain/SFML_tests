@@ -1,1 +1,3 @@
 SFML tests
+
+Atom test
