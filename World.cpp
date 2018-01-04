@@ -57,7 +57,8 @@ void World::update(Snake &player) {
 	int grid_y = _window_size.y / _block_size;
 
 	if (player.getPosition().x <= 0 || player.getPosition().y <= 0 ||
-		player.getPosition().x >= grid_x - 1 || player.getPosition().y >= grid_y - 1) {
+		player.getPosition().x >= grid_x - 1 || 
+		player.getPosition().y >= grid_y - 1) {
 		player.lose();
 	}
 }
