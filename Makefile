@@ -19,5 +19,4 @@ ResourcePath.o: ResourcePath.mm
 clean:
 	rm game $(OBJECTS)
 
-
 .PHONY: all clean
