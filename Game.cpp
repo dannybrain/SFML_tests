@@ -27,7 +27,8 @@ void Game::debug() {
             "\nSize " + std::to_string(_snake.getSize()) +
             "\nLives " + std::to_string(_snake.getLives()) +
             "\nScore " + std::to_string(_snake.getScore()) +
-            "\nDirection " + std::to_string(static_cast<int>(_snake.getDirection())) +
+            "\nDirection " + std::to_string(
+                               static_cast<int>(_snake.getDirection())) +
             "\nDelta " + std::to_string(_cumul_delta.asSeconds());
 
     if (font.loadFromFile("sansation.ttf")) {

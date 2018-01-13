@@ -13,7 +13,8 @@ int Snake::_lives = 3;
 
 Snake::Snake(int size) {
 	_block_size = size;
-	_bodyShape.setSize(sf::Vector2f(_block_size - 1, _block_size - 1));
+	_bodyShape.setSize(sf::Vector2f(_block_size - 1, 
+									_block_size - 1));
 	reset();
 }
 
@@ -65,13 +66,17 @@ void Snake::extend() {
 		}
 	} else {
 		if (_direction == snakeDirection::Up) {
-			_body.push_back(snakeSegment(tail_head.position.x, tail_head.position.y + 1));
+			_body.push_back(snakeSegment(tail_head.position.x, 
+										tail_head.position.y + 1));
 		} else if (_direction == snakeDirection::Down) {
-			_body.push_back(snakeSegment(tail_head.position.x, tail_head.position.y - 1));
+			_body.push_back(snakeSegment(tail_head.position.x, 
+										tail_head.position.y - 1));
 		} else if (_direction == snakeDirection::Left) {
-			_body.push_back(snakeSegment(tail_head.position.x + 1, tail_head.position.y));
+			_body.push_back(snakeSegment(tail_head.position.x + 1,
+										tail_head.position.y));
 		} else if (_direction == snakeDirection::Right) {
-			_body.push_back(snakeSegment(tail_head.position.x - 1, tail_head.position.y));
+			_body.push_back(snakeSegment(tail_head.position.x - 1, 
+										tail_head.position.y));
 		}
 	}
 }
@@ -127,18 +132,28 @@ void Snake::render(sf::RenderWindow &window) {
 
 	auto head = _body.begin();
 	_bodyShape.setFillColor(sf::Color::Yellow);
-	_bodyShape.setPosition(head->position.x * _block_size, head->position.y * _block_size);
+	_bodyShape.setPosition(head->position.x * _block_size, 
+						head->position.y * _block_size);
 	window.draw(_bodyShape);
 
 	for (auto itr=_body.begin() + 1; itr < _body.end(); itr++) {
 		_bodyShape.setFillColor(sf::Color::Green);
-		_bodyShape.setPosition(itr->position.x * _block_size, itr->position.y * _block_size);
+		_bodyShape.setPosition(itr->position.x * _block_size, 
+							itr->position.y * _block_size);
 		window.draw(_bodyShape);
 	}
 }
 
+void Snake::increaseScore() { 
+	_score++; 
+	_speed += 1 / (2 * log(_body.size())) * _speed_increment;
+}
+
+bool Snake::hasLost() { return _lost; }
+void Snake::lose() { _lost = true; }
+void Snake::toggleLost() { _lost = !_lost; }
+
 // helper methods ===========================================================
-void Snake::increaseScore() { _score++; _speed += 1 / (2 * log(_body.size())) * _speed_increment; }
 void Snake::setDirection(snakeDirection dir) { _direction = dir; }
 snakeDirection Snake::getDirection() { return _direction; }
 int Snake::getSize() { return _body.size(); }
@@ -146,6 +161,3 @@ int Snake::getSpeed() { return _speed; }
 void Snake::setSpeed(int speed) { _speed = speed; }
 int Snake::getLives() { return Snake::_lives; }
 int Snake::getScore() { return _score; }
-bool Snake::hasLost() { return _lost; }
-void Snake::lose() { _lost = true; }
-void Snake::toggleLost() { _lost = !_lost; }
