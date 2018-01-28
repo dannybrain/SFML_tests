@@ -6,12 +6,22 @@
         {
             "label": "build test",
             "type": "shell",
-            "command": "g++ -g -Wc++11-extensions simpletest.cpp -o simpletest",
+            "command": "g++ -g -Wno-c++11-extensions simpletest.cpp -o simpletest",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher":"$gcc",
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "build game",
+            "type": "shell",
+            "command": "make",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
     ]
 }

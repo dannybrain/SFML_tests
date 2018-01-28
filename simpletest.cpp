@@ -17,5 +17,10 @@ int main(int argc, char** argv) {
     MaClass cool;
     std::cout << "hehe = " << cool.getNumber() << std::endl;
 
+
+    std::pair<int,int> mytuple(10, 20);
+
+    std::cout << std::get<0>(mytuple) << std::endl;
+
     exit(0);
 }
