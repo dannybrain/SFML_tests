@@ -1,5 +1,9 @@
 {
     "files.associations": {
+<<<<<<< HEAD
         "__locale": "cpp"
+=======
+        "chrono": "cpp"
+>>>>>>> 739c19d4a353c7d79125449c8b2d21aaca88341d
     }
 }
