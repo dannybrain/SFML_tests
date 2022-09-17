@@ -4,7 +4,7 @@
 //
 //  Created by Daniel Biehle on 12/14/17.
 //  Copyright © 2017 Daniel Biehle. All rights reserved.
-//
+//  
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
