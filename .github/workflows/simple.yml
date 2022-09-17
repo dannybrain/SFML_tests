@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   run-windows-command:
-    needs:  ['run-shell-command']
     runs-on: windows-2019
     steps:
       - run: Get-Location
@@ -12,6 +11,7 @@ jobs:
         shell: bash
 
   run-shell-command:
+    needs:  ['run-windows-command']
     runs-on: ubuntu-latest
     steps:
       - name: echo a string
