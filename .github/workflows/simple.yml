@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo a string
-        run: echo "La classe les gars"
+        run: eccho "La classe les gars"
       - name: echo another string
         run: | 
           node -v
