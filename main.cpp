@@ -5,6 +5,7 @@
 
 #include "Game.hpp"
 
+// balek de la cmd line
 int main(int, char const**)
 {
     Game game;
