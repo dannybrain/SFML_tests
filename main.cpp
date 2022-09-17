@@ -17,6 +17,6 @@ int main(int, char const**)
         //std::cout << game.getDelta().asMicroseconds() << std::endl;
         game.restartClock();
     }
-    
+ 
     return EXIT_SUCCESS;
 }
