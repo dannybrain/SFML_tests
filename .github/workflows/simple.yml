@@ -3,6 +3,13 @@ name: Simple shell commands
 on: [push]
 
 jobs:
+  run-windows-command:
+    runs-on: windows-2019
+    steps:
+      - run: GetLocation
+      - run: pwd
+        shell: bash
+
   run-shell-command:
     runs-on: ubuntu-latest
     steps:
