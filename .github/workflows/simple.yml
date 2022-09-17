@@ -14,7 +14,6 @@ jobs:
           npm -v
       - name: python command
         run: |
-          import numpy
           import platform
           print("ah ouais meme en python !" + platform.processor())
         shell: python
