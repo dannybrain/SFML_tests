@@ -10,16 +10,24 @@ jobs:
         run : |
           pwd
           ls -la
+          echo "SHA: $GITHUB_SHA"
+          echo "REPO : $GITHUB_REPOSITORY"
+          echo "WORKSPACE: %GITHUB_WORKSPACE"
+          echo "GITHUB objectif : ${{ github.token }}"
+
       - name: Check out
         uses: actions/checkout@v1
+      
       - name: List files after checkout
         run : |
           pwd
           ls -la
+
       - name: JS Actions
         id: greet
         uses: actions/hello-world-javascript-action@v1
         with:
           who-to-greet: "Dan"
+
       - name : Log
         run: echo "${{ steps.greet.outputs.time }}"
