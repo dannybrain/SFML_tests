@@ -1,7 +1,16 @@
 name: Actions command
 
 on: 
-  #push:
+  push:
+    branches:
+      - master
+      - 'feature/*' 
+      - '!feature/featC'
+    tags:
+      - v1.*a
+    paths:    #whenever a new .js file is added"
+      - '**.js'
+      - '!filename.js'
 #  schedule:
 #    - cron: "*/5 * * * *"
   repository_dispatch:
