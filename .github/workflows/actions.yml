@@ -2,8 +2,8 @@ name: Actions command
 
 on: 
   #push:
-  schedule:
-    - cron: "*/5 * * * *"
+#  schedule:
+#    - cron: "*/5 * * * *"
   repository_dispatch:
     types: [jebuildmec]
 
@@ -13,7 +13,10 @@ on:
 jobs:
   run-github-actions:
     runs-on: ubuntu-latest
+
     steps:
+      - name : Payload
+        run : echo ${{ event.client_payload.env }}
       - name: List files
         run : |
           pwd
