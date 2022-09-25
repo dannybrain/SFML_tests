@@ -1,6 +1,14 @@
 name: Actions command
 
-on: [push, pull_request]
+on: 
+  #push:
+#  schedule:
+#    - cron: "*/5 * * * *"
+  repository_dispatch:
+    types: [jebuildmec]
+
+  pull_request:
+    types: [closed, assigned, opened, reopened]
 
 jobs:
   run-github-actions:
