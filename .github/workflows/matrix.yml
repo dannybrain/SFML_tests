@@ -3,7 +3,7 @@ on: push
 
 jobs:
   node-version:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Log node v6
         run: node -v
