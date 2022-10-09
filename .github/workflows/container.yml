@@ -10,7 +10,8 @@ jobs:
         ports:
           - 3001:3000
       mongo:
-        image: mongo-latest
+      # mais putain c un change
+        image: mongo
         ports:
           - 27017:27017
     #container: 
