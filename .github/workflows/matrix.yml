@@ -3,12 +3,18 @@ on: push
 
 jobs:
   node-version:
-    runs-on: ubuntu-18.04
+    runs-on: ${{ matrix.myos }}
+    strategy:
+      fail-fast: true
+      matrix:
+        mynode_version: [6, 7, 8]
+        myos: [macos-latest, ubuntu-latest, windows-latest]
+      max-parallel: 2
     steps:
-      - name: Log node v7
+      - name: Log node version
         run: node -v
       - uses: actions/setup-node@v1
         with:
-          node-version: 7
+          node-version: ${{ matrix.mynode_version }} 
       - name: Log node v7 double check
         run: node -v
