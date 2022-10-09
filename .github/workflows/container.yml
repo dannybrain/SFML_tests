@@ -22,4 +22,4 @@ jobs:
         run: |
           node -v
           cat /etc/os-release
-          curl -X POST http://localhost:3001/api/user -H 'Content-Type: application/json' -d '{\"username\": \"hello\", \"address\": \"dwded\"}'
+          curl -X POST http://localhost:3001/api/user -H ''Content-Type: application/json''' -d ''{\"username\": \"hello\", \"address\": \"dwded\"}''
