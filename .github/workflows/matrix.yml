@@ -13,7 +13,11 @@ jobs:
           - myos: ubuntu-latest
             mynode_version: 6
           - myos: macos-latest
-            mynode_version: ['6', '7']
+            mynode_version: 6
+          - myos: macos-latest
+            mynode_version: 7
+          - myos: windows-latest
+            
       #max-parallel: 2
     steps:
       - name: Log node version
