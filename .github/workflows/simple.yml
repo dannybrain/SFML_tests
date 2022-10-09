@@ -16,6 +16,7 @@ jobs:
     steps:
       - name: echo a string
         run: echo "La classe les gars"
+        continue-on-error: true
       - name: echo another string
         run: | 
           node -v
