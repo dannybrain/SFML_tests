@@ -9,6 +9,11 @@ jobs:
       matrix:
         mynode_version: [6, 7, 8]
         myos: [macos-latest, ubuntu-latest, windows-latest]
+        exclude:
+          - myos: ubuntu-latest
+            mynode_version: 6
+          - myos: macos-latest
+            mynode_version: [6, 7]
       #max-parallel: 2
     steps:
       - name: Log node version
