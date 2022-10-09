@@ -3,6 +3,8 @@ on: push
 
 jobs:
   node-version:
+    #disabling for now
+    if: ${{ false }}
     runs-on: ${{ matrix.myos }}
     strategy:
       fail-fast: true

@@ -4,6 +4,8 @@ on: [push]
 
 jobs:
   run-windows-command:
+    #disabling for now
+    if: ${{ false }}
     runs-on: windows-2019
     steps:
       - run: Get-Location
@@ -11,6 +13,8 @@ jobs:
         shell: bash
 
   run-shell-command:
+    #disabling for now
+    if: ${{ false }}
     needs:  ['run-windows-command']
     runs-on: ubuntu-latest
     steps:
