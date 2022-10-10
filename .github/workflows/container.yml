@@ -21,5 +21,6 @@ jobs:
       - name: Post a user
         run: |
           node -v
+          echo "test from Magellan"
           cat /etc/os-release
           curl -X POST http://localhost:3001/api/users -H 'Content-Type: application/json' -d '{\"username\": \"hello\", \"address\": \"dwded\"}'
