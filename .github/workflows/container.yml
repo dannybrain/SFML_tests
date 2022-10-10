@@ -16,11 +16,18 @@ jobs:
           entrypoint: '/bin/echo'
           args: 'Cool la vie'
       
-      - name : step with docker suite
+      - name:  step with docker suite
         uses: docker://node:18-buster
         with:
           entrypoint: /usr/local/bin/node
           args: -v
+
+      - uses: actions/checkout@v1  
+      - name: step with our own script
+        uses: docker://node:18-buster
+        with:
+          entrypoint: ./script.sh
+          args: "alors la "
 
 
   node-docker:
